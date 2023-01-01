@@ -2,14 +2,7 @@ import requests
 import json
 import random
 import csv
-import pandas as pd
-
-
-
-'''csv=pd.read_csv("C:\\Users\\jithe\\Downloads\\Sample.csv",delimiter= ':')
-
-print(csv)'''
-with open("C:\\Users\\jithe\\Downloads\\Sample2.csv",'r') as f:
+with open("Sample.csv",'r') as f:
     cvreader=csv.reader(f)
     message=[]
     email=[]
@@ -37,8 +30,6 @@ with open("C:\\Users\\jithe\\Downloads\\Sample2.csv",'r') as f:
         for i in schedule:
             if i=="Schedule On":
                 schedule.remove('Schedule On')
-                        
-message[0]="ribution-ShareAlikeLicense additional terms may apply. By using this site, you agree to the Terms of Use and Privacy Policy. Wikipediais a registered trademark of the Wikimedia Foundation, Inc., a non-profit organization."
 import smtplib
 sender_email="bhargava1k97@gmail.com"
 password="lbfgkfispqqdptpz"
@@ -46,7 +37,6 @@ server=smtplib.SMTP('smtp.gmail.com',587)
 server.starttls()
 server.login(sender_email,password)   
 print("login")
-
 def sendsms(num,msg):
     url="https://www.fast2sms.com/dev/bulkV2"
     paramse={
@@ -60,9 +50,7 @@ def sendsms(num,msg):
     response=requests.get(url,params=paramse)
     dic=response.json()
     print(response.text)
-    #return dic.get('return')
 for i in range(len(email)):
-    if schedule=="":
         if email[i].endswith("gmail.com"):
             server.sendmail(sender_email,email[i],message[i])
             print("success ",i)
@@ -72,28 +60,7 @@ for i in range(len(email)):
             sendsms(phn[i],message[i])
             print("sms sent ",i)
         else:
-            print("Message length should be > 1 and <=160 characters")
-    else:
-        import time
-        import datetime
-        timm=((schedule[i]))
-
-        x = datetime.datetime(2022,12,31,2,2)
-        y=x.timestamp()
-        tim=time.time()
-        print("scheduling")
-        time.sleep(y-tim)
-        if email[i].endswith("gmail.com"):
-            server.sendmail(sender_email,email[i],message[i])
-            print("success ",i)
-        else:
-            print("Invalid Email",email[i])
-        if len(message[i])>1 and len(message[i])<160:
-            sendsms(phn[i],message[i])
-            print("sms sent ",i)
-        else:
-            print("Message length should be > 1 and <=160 characters")
-        
+            print("Message length should be > 1 and <=160 characters"
         
     
        
