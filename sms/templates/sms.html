@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+<title>
+sms page</title>
+
+<link rel="stylesheet" media="screen" href={{url_for('static',filename='sms.css')}}>
+<script src="{{url_for('static', filename='sms.js')}}"></script>
+</head>
+<body>
+<center>
+<div class="form">
+<form  action="{{url_for('sms')}}" method="post">
+<!--<input type="text" placeholder="Name" id="name" name="name" auatocomplete="off" required><br>-->
+<input type="email" placeholder="Email" id="email" name="email" auatocomplete="off" required><br>
+<input type="tel" placeholder="Phone Number"  pattern="[0-9]{10}" title="enter valid phone no." id="phn" name="phn" auatocomplete="off" required><br>
+<input type="text" placeholder="Subject" id="subject" name="subject" auatocomplete="off" required><br>
+<select name="cars" id="cars">
+  <option value="volvo">INDIA</option>
+  <option value="saab">USA</option>
+</select><br>
+<textarea id="message" placeholder="Message" cols="25" name="message" rows="7" required></textarea><br>
+<input type="datetime-local" value="{{datetim}}" min="{{datetim}}" id="datetim" max="2023-01-28T12:15" ><br>
+<button id="btn" type="submit" onclick="email_Valid()">Email</button>
+<button id="btn" type="submit" onclick="sms()">SMS</button><br>
+<button id="both-btn" type="submit" >Both</button>
+</form>
+</div><br>
+
+<p>{{success}}</p>
+<p>{{fail1}}</p>
+<p>{{fail}}</p>
+</center>
+<style>
+body{
+    background-color: greenyellow;
+}
+*{
+    color:black;
+}
+
+.form{
+    width:47%;
+    height:440px;
+    background-color:white;
+    border-radius: 10px;
+  
+}
+.form input,textarea,#btn{
+    margin-top: 11px;
+}
+#email{
+    text-transform: lowercase;
+}
+.form input{
+    width:200px;
+    height: 30px;   
+}
+#btn{
+    width:100px;
+    height: 30px;
+    color: white;
+    background-color: blueviolet;
+    border: none;
+    cursor: pointer;
+}
+#both-btn{
+    margin-top: 10px;
+    width:200px;
+    height: 30px;
+    color: white;
+    background-color: blueviolet;
+    border: none;
+    cursor: pointer;
+}
+#cars{
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+    color:green;
+}
+</style>
+
+</body>
+<script>
+function sms(){
+    const email=document.getElementById('email'),
+    subject=document.getElementById('subject');
+    email.value="";
+    email.removeAttribute("required");
+    subject.removeAttribute("required");
+}
+
+
+
+function email_Valid(){
+    const phn=document.getElementById('phn');
+    phn.value="";
+    phn.removeAttribute("required");
+}
+</script>
+</html>
